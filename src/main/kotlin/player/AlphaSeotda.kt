@@ -2,7 +2,7 @@ package player
 
 import util.BattingOption
 
-class AlphaSeotda(money : Int = defaultMoney) : Player(money) {
+class AlphaSeotda(name : String, money : Int = defaultMoney) : Player(name, money) {
     override fun batting(): BattingOption {
         return BattingOption.DDADANG
     }

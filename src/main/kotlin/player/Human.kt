@@ -5,7 +5,7 @@ import util.BattingOption
 import java.util.Base64
 import java.util.Scanner
 
-class Human(money: Int = defaultMoney) : Player(money){
+class Human(name : String, money: Int = defaultMoney) : Player(name, money){
 
     override fun batting(): BattingOption {
         GameUi.printBattingOption()

@@ -2,7 +2,7 @@ package player
 
 import util.BattingOption
 
-abstract class Player(protected var _money : Int) {
+abstract class Player(val name : String, protected var _money : Int) {
     fun minuseMoney(money : Int) {
         this._money -= money
     }

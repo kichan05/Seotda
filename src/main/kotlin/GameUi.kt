@@ -67,9 +67,9 @@ object GameUi {
     * 플레이어 배팅 알림
     * */
     fun printBattingMessage(player: Player, battingOption: BattingOption, battingMoney: Int) {
-        val message = "${getColorString(player.toString(), Color.CYAN)}님이 " +
-                      "${getColorString(battingOption.nameKo, Color.YELLOW)} 배팅, " +
-                      "총 배팅 금액 : ${getColorString(battingMoney.toString(), Color.YELLOW)}"
+        val message = "${getColorString(player.name, Color.CYAN)}님이 " +
+                      "${getColorString(battingOption.nameKo, Color.YELLOW)}, " +
+                      "총 배팅액 : ${getColorString("${battingMoney}억", Color.YELLOW)}"
 
         println(message)
     }
@@ -78,6 +78,6 @@ object GameUi {
     플레이어 다이 알림
     * */
     fun printPlayerDieMessage(player: Player) {
-        println("${getColorString(player.toString(), Color.CYAN)}님이 ${getColorString("다이", Color.RED)} 하셨습니다.")
+        println("${getColorString(player.name, Color.CYAN)}님이 ${getColorString("다이", Color.RED)} 하셨습니다.")
     }
 }

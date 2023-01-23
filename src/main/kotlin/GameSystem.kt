@@ -22,14 +22,14 @@ object GameSystem {
     }
 
     private fun initGame() {
-        val human = Human(20).apply {
+        val human = Human("플레이어").apply {
             addNumber((0..9).random())
             addNumber((0..9).random())
         }
         _playersList.add(human)
 
         for (i in 0..6) {
-            val alphaSeotda = AlphaSeotda().apply {
+            val alphaSeotda = AlphaSeotda("인공지능 ${i + 1}").apply {
                 addNumber((0..9).random())
                 addNumber((0..9).random())
             }
