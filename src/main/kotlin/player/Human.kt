@@ -8,6 +8,6 @@ class Human(money: Int) : Player(money){
     }
 
     override fun toString(): String {
-        return "Human(nums=$nums money=$money)"
+        return "Human(nums=$nums money=$_money)"
     }
 }

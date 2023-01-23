@@ -8,6 +8,6 @@ class AlphaSeotda(money : Int) : Player(money) {
     }
 
     override fun toString(): String {
-        return "AlphaSeotda(nums=$nums money=$money)"
+        return "AlphaSeotda(nums=$nums money=$_money)"
     }
 }

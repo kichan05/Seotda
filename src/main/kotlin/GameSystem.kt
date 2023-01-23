@@ -3,14 +3,17 @@ import player.Human
 import player.Player
 
 object GameSystem {
-    val players: MutableList<Player> = mutableListOf()
+    private val _playersList : MutableList<Player> = mutableListOf()
+    val getPlayerList : List<Player>
+        get() =  _playersList
+
+    val getHuman : Player
+        get() = _playersList[0]
 
     fun main() {
         initGame()
 
-        for (i in players) {
-            println(i)
-        }
+        GameUi.showHumanInfo()
     }
 
     private fun initGame() {
@@ -18,14 +21,14 @@ object GameSystem {
             addNumber((0..9).random())
             addNumber((0..9).random())
         }
-        players.add(human)
+        _playersList.add(human)
 
-        for (i in 0..7) {
+        for (i in 0..6) {
             val alphaSeotda = AlphaSeotda().apply {
                 addNumber((0..9).random())
                 addNumber((0..9).random())
             }
-            players.add(alphaSeotda)
+            _playersList.add(alphaSeotda)
         }
     }
 }

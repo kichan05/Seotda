@@ -1,11 +1,15 @@
 package player
 
-abstract class Player(var money : Int) {
+abstract class Player(protected var _money : Int) {
     fun minuseMoney(money : Int) {
-        this.money -= money
+        this._money -= money
     }
     fun addMoney(money : Int) {
-        this.money += money
+        this._money += money
+    }
+
+    fun getMoney() : Int {
+        return _money
     }
 
     protected val nums : MutableList<Int> = mutableListOf()
