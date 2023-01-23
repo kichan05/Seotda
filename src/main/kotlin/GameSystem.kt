@@ -1,6 +1,7 @@
 import player.AlphaSeotda
 import player.Human
 import player.Player
+import util.BattingOption
 
 object GameSystem {
     private val _playersList : MutableList<Player> = mutableListOf()
@@ -10,10 +11,14 @@ object GameSystem {
     val getHuman : Player
         get() = _playersList[0]
 
+
     fun main() {
         initGame()
 
         GameUi.showHumanInfo()
+
+        val batting = Batting()
+        batting.run()
     }
 
     private fun initGame() {

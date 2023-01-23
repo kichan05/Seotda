@@ -1,10 +1,10 @@
 package player
 
-class AlphaSeotda(money : Int) : Player(money) {
-    constructor() : this(defaultMoney)
+import util.BattingOption
 
-    override fun getScore(): Int {
-        TODO("Not yet implemented")
+class AlphaSeotda(money : Int = defaultMoney) : Player(money) {
+    override fun batting(): BattingOption {
+        return BattingOption.DDADANG
     }
 
     override fun toString(): String {

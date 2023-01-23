@@ -1,5 +1,7 @@
 package player
 
+import util.BattingOption
+
 abstract class Player(protected var _money : Int) {
     fun minuseMoney(money : Int) {
         this._money -= money
@@ -23,7 +25,9 @@ abstract class Player(protected var _money : Int) {
 
         return nums[index]
     }
-    abstract fun getScore() : Int
+    fun getScore() : Int {
+        TODO("Not yet implemented")
+    }
 
     private var _isDeath : Boolean = false
     fun deathInit() {
@@ -35,6 +39,8 @@ abstract class Player(protected var _money : Int) {
     fun isDeath() : Boolean {
         return _isDeath
     }
+
+    abstract fun batting() : BattingOption
 
     companion object {
         const val defaultMoney = 20
