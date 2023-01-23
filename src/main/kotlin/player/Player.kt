@@ -8,7 +8,7 @@ abstract class Player(var money : Int) {
         this.money += money
     }
 
-    private val nums : MutableList<Int> = mutableListOf()
+    protected val nums : MutableList<Int> = mutableListOf()
     fun addNumber(num : Int) {
         nums.add(num)
     }
@@ -30,5 +30,9 @@ abstract class Player(var money : Int) {
     }
     fun isDeath() : Boolean {
         return _isDeath
+    }
+
+    companion object {
+        const val defaultMoney = 20
     }
 }
