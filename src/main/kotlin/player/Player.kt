@@ -40,7 +40,7 @@ abstract class Player(val name : String, protected var _money : Int) {
         return _isDeath
     }
 
-    abstract fun batting() : BattingOption
+    abstract fun batting(lastBattingMoney : Int) : BattingOption
 
     companion object {
         const val defaultMoney = 20

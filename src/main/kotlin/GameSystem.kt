@@ -18,11 +18,14 @@ object GameSystem {
         GameUi.showHumanInfo()
 
         val batting = Batting()
-        batting.run()
+        val battingMoney = batting.run()
+        println("총 ${battingMoney}억 배팅")
+
+        GameUi.showHumanInfo()
     }
 
     private fun initGame() {
-        val human = Human("플레이어").apply {
+        val human = Human("플.레.이.어").apply {
             addNumber((0..9).random())
             addNumber((0..9).random())
         }

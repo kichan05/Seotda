@@ -55,21 +55,32 @@ object GameUi {
     /*
     사용자에게 보여주는 배팅 옵션 목록 출력
     * */
-    fun printBattingOption() {
+    fun printBattingOption(lastBattingMoney : Int) {
         printLine()
         printSystemMessage("배팅 옵션")
         for (i in BattingOption.values()) {
-            println("${i.ordinal + 1}. ${i.nameKo}")
+            print("${i.ordinal + 1}. ${i.nameKo} ")
+            when(i) {
+                BattingOption.CALL -> {
+                    println("(${lastBattingMoney}억 배팅)")
+                }
+                BattingOption.DDADANG -> {
+                    println("(${lastBattingMoney * 2}억 배팅)")
+                }
+                BattingOption.DIE -> {
+                   println()
+                }
+            }
         }
     }
 
     /*
     * 플레이어 배팅 알림
     * */
-    fun printBattingMessage(player: Player, battingOption: BattingOption, battingMoney: Int) {
+    fun printBattingMessage(player: Player, battingOption: BattingOption, addMoney : Int, totalMoney: Int) {
         val message = "${getColorString(player.name, Color.CYAN)}님이 " +
-                      "${getColorString(battingOption.nameKo, Color.YELLOW)}, " +
-                      "총 배팅액 : ${getColorString("${battingMoney}억", Color.YELLOW)}"
+                      "${getColorString(battingOption.nameKo, Color.YELLOW)}(${addMoney}억), " +
+                      "총 배팅액 : ${getColorString("${totalMoney}억", Color.YELLOW)}"
 
         println(message)
     }

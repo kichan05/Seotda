@@ -4,19 +4,19 @@ class Batting {
     private var battingMoney: Int = 0
     private var lastMoney: Int = 1
 
-    fun run() {
+    fun run() : Int {
         val players = GameSystem.getPlayerList.filter { !it.isDeath() }
 
         for (i in players) {
-            val playerBattingMoney = i.batting()
+            val playerBattingMoney = i.batting(lastMoney)
 
             when (playerBattingMoney) {
                 CALL -> {
-                    GameUi.printBattingMessage(i, CALL, battingMoney + lastMoney)
+                    GameUi.printBattingMessage(i, CALL, lastMoney, battingMoney + lastMoney)
                     battingMoney += lastMoney
                 }
                 DDADANG -> {
-                    GameUi.printBattingMessage(i, DDADANG, battingMoney + lastMoney * 2)
+                    GameUi.printBattingMessage(i, DDADANG, lastMoney * 2, battingMoney + lastMoney * 2)
                     battingMoney += lastMoney * 2
                     lastMoney *= 2
                 }
@@ -27,5 +27,7 @@ class Batting {
                 }
             }
         }
+
+        return battingMoney
     }
 }
