@@ -3,9 +3,8 @@ import player.Human
 import player.Player
 
 object GameSystem {
-    private const val BATTING_MAX_COUNT = 3
+    private const val BATTING_MAX_COUNT = 5
     private const val PLAYER_DEFAULT_MONEY = 100
-
 
     private val _playersList : MutableList<Player> = mutableListOf()
     val getPlayerList : List<Player>
@@ -24,13 +23,13 @@ object GameSystem {
     }
 
     private fun initGame() {
-//        val human = Human("플.레.이.어", PLAYER_DEFAULT_MONEY).apply {
-//            addNumber((0..9).random())
-//            addNumber((0..9).random())
-//        }
-//        _playersList.add(human)
+        val human = Human("플.레.이.어", PLAYER_DEFAULT_MONEY).apply {
+            addNumber((0..9).random())
+            addNumber((0..9).random())
+        }
+        _playersList.add(human)
 
-        for (i in 0..7) {
+        for (i in 0..6) {
             val alphaSeotda = AlphaSeotda("인공지능 ${i + 1}", PLAYER_DEFAULT_MONEY).apply {
                 addNumber((0..9).random())
                 addNumber((0..9).random())
@@ -41,7 +40,7 @@ object GameSystem {
     private fun batting() {
         var battingCount = BATTING_MAX_COUNT
         val batting = Batting()
-        while(_playersList.filter { !it.isDeath() }.size >= 2 || battingCount > 0){
+        while(_playersList.filter { !it.isDeath() }.size >= 3 && battingCount > 0){
             batting.run()
 
             battingCount--
@@ -59,8 +58,8 @@ object GameSystem {
 
         var winnerPlayer = alivePlayer[0]
         for(i in alivePlayer.slice(1 until alivePlayer.size)){
-            if(winnerPlayer.getScore().isDDang){
-                if(i.getScore().isDDang){
+            if(winnerPlayer.getScore().isDDeng){
+                if(i.getScore().isDDeng){
                     if(winnerPlayer.getScore().number < i.getScore().number || i.getScore().number == 0){
                         winnerPlayer = i
                     }

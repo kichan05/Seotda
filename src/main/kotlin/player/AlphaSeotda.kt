@@ -4,15 +4,14 @@ import util.BattingOption
 
 class AlphaSeotda(name : String, money : Int) : Player(name, money) {
     override fun batting(lastBattingMoney: Int): BattingOption {
-//        return BattingOption.values().toList().shuffled()[0]
+        if(getMoney() < lastBattingMoney)
+            return BattingOption.DIE
 
-        if(lastBattingMoney * 2 <= _money) {
+        if(getScore().isDDeng && getMoney() > lastBattingMoney * 2)
             return BattingOption.DDADANG
-        }
 
-        if(lastBattingMoney <= _money) {
+        if(getScore().number in 5..9)
             return BattingOption.CALL
-        }
 
         return BattingOption.DIE
     }

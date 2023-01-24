@@ -5,6 +5,9 @@ import util.SeotdaCombination
 
 abstract class Player(val name : String, protected var _money : Int) {
     fun minuseMoney(money : Int) {
+        if(this._money < money)
+            throw java.lang.Exception("돈이 부족합니다.")
+
         this._money -= money
     }
     fun addMoney(money : Int) {
