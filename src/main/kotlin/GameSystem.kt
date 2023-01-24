@@ -19,8 +19,6 @@ object GameSystem {
     fun main() {
         initGame()
 
-//        GameUi.showHumanInfo()
-
         var battingCount = BATTING_MAX_COUNT
         val batting = Batting()
 
