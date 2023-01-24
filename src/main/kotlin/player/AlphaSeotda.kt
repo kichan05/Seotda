@@ -1,13 +1,10 @@
 package player
 
-import Batting
 import util.BattingOption
 
 class AlphaSeotda(name : String, money : Int) : Player(name, money) {
     override fun batting(lastBattingMoney: Int): BattingOption {
-//        val randomOption = BattingOption.values().toList().shuffled().first()
-//
-//        return randomOption
+//        return BattingOption.values().toList().shuffled()[0]
 
         if(lastBattingMoney * 2 <= _money) {
             return BattingOption.DDADANG

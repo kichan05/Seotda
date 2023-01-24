@@ -2,7 +2,6 @@ package player
 
 import GameUi
 import util.BattingOption
-import java.util.Base64
 import java.util.Scanner
 
 class Human(name : String, money: Int) : Player(name, money){

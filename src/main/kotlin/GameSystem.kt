@@ -1,7 +1,6 @@
 import player.AlphaSeotda
 import player.Human
 import player.Player
-import util.BattingOption
 
 object GameSystem {
     private const val BATTING_MAX_COUNT = 3
@@ -15,37 +14,65 @@ object GameSystem {
     val getHuman : Player
         get() = _playersList[0]
 
+    private var battingMoney : Int = 0
+
 
     fun main() {
         initGame()
-
-        var battingCount = BATTING_MAX_COUNT
-        val batting = Batting()
-
-        while(_playersList.filter { !it.isDeath() }.size >= 2 || battingCount > 0){
-            println("${batting.battingMoney}억 적립")
-            batting.run()
-
-            battingCount--
-        }
-        println("총 ${batting.battingMoney}억 배팅")
-
-        GameUi.showHumanInfo()
+        batting()
+        decisionWinner()
     }
 
     private fun initGame() {
-        val human = Human("플.레.이.어", PLAYER_DEFAULT_MONEY).apply {
-            addNumber((0..9).random())
-            addNumber((0..9).random())
-        }
-        _playersList.add(human)
+//        val human = Human("플.레.이.어", PLAYER_DEFAULT_MONEY).apply {
+//            addNumber((0..9).random())
+//            addNumber((0..9).random())
+//        }
+//        _playersList.add(human)
 
-        for (i in 0..6) {
+        for (i in 0..7) {
             val alphaSeotda = AlphaSeotda("인공지능 ${i + 1}", PLAYER_DEFAULT_MONEY).apply {
                 addNumber((0..9).random())
                 addNumber((0..9).random())
             }
             _playersList.add(alphaSeotda)
         }
+    }
+    private fun batting() {
+        var battingCount = BATTING_MAX_COUNT
+        val batting = Batting()
+        while(_playersList.filter { !it.isDeath() }.size >= 2 || battingCount > 0){
+            batting.run()
+
+            battingCount--
+        }
+
+        battingMoney = batting.battingMoney
+        println("총 ${battingMoney}억 배팅")
+    }
+    private fun decisionWinner() {
+        val alivePlayer = _playersList.filter { !it.isDeath() }
+        if(alivePlayer.isEmpty()){
+            println("우승자는 없습니다.")
+            return
+        }
+
+        var winnerPlayer = alivePlayer[0]
+        for(i in alivePlayer.slice(1 until alivePlayer.size)){
+            if(winnerPlayer.getScore().isDDang){
+                if(i.getScore().isDDang){
+                    if(winnerPlayer.getScore().number < i.getScore().number || i.getScore().number == 0){
+                        winnerPlayer = i
+                    }
+                }
+            }
+            else {
+                if(winnerPlayer.getScore().number < i.getScore().number){
+                    winnerPlayer = i
+                }
+            }
+        }
+
+        println("우승 : ${winnerPlayer.name}")
     }
 }

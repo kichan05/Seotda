@@ -1,6 +1,7 @@
 package player
 
 import util.BattingOption
+import util.SeotdaCombination
 
 abstract class Player(val name : String, protected var _money : Int) {
     fun minuseMoney(money : Int) {
@@ -25,8 +26,12 @@ abstract class Player(val name : String, protected var _money : Int) {
 
         return nums[index]
     }
-    fun getScore() : Int {
-        TODO("Not yet implemented")
+    fun getScore() : SeotdaCombination {
+        if(nums[0] == nums[1]){
+            return SeotdaCombination(nums[0], true)
+        }
+
+        return SeotdaCombination((nums[0] + nums[1]) % 10, false)
     }
 
     private var _isDeath : Boolean = false
