@@ -93,4 +93,19 @@ object GameUi {
     fun printPlayerDieMessage(player: Player) {
         println("${getColorString(player.name, Color.CYAN)}님이 ${getColorString("다이", Color.RED)} 하셨습니다.")
     }
+
+    /*
+    * 우승자를 출력
+    * */
+    fun showWinner(winner : Player) {
+        printLine(40)
+        printSystemMessage("우승자 : ${getColorString(winner.name, Color.CYAN)}")
+        printLine(40)
+    }
+
+    fun printNoneWinner(){
+        printLine(40)
+        printSystemMessage("우승자가 없습니다.")
+        printLine(40)
+    }
 }

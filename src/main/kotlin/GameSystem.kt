@@ -53,7 +53,7 @@ object GameSystem {
     private fun decisionWinner() {
         val alivePlayer = _playersList.filter { !it.isDeath() }
         if(alivePlayer.isEmpty()){
-            println("우승자는 없습니다.")
+            GameUi.printNoneWinner()
             return
         }
 
@@ -73,6 +73,6 @@ object GameSystem {
             }
         }
 
-        println("우승 : ${winnerPlayer.name}")
+        GameUi.showWinner(winnerPlayer)
     }
 }
