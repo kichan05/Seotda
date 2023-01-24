@@ -5,8 +5,9 @@ import util.BattingOption
 import java.util.Base64
 import java.util.Scanner
 
-class Human(name : String, money: Int = defaultMoney) : Player(name, money){
+class Human(name : String, money: Int) : Player(name, money){
     override fun batting(lastBattingMoney: Int): BattingOption {
+        GameUi.showHumanInfo()
         while (true){
             GameUi.printBattingOption(lastBattingMoney)
             GameUi.printSystemMessage("원하는 배팅을 선택하세요 : ")
@@ -30,12 +31,12 @@ class Human(name : String, money: Int = defaultMoney) : Player(name, money){
                     return BattingOption.DDADANG
                 }
                 BattingOption.DIE.ordinal -> {
-                    if (lastBattingMoney * 2 > _money){
-                        GameUi.printSystemMessage("죽음을 선택하셨습니다.")
-                        continue
-                    }
-
+                    GameUi.printSystemMessage("죽음을 선택하셨습니다.")
                     return BattingOption.DIE
+                }
+                else -> {
+                    GameUi.printSystemMessage("올바른 값을 입력해주세요.")
+                    continue
                 }
             }
         }

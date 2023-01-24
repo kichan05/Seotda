@@ -36,6 +36,7 @@ object GameUi {
             print("${i.getNumber(0)}, ${i.getNumber(1)}\t")
             print("${i.getMoney()}억원")
             println(Color.RESET.fontColor)
+            printLine()
         }
     }
 
@@ -44,11 +45,12 @@ object GameUi {
     * */
     fun showHumanInfo() {
         printLine()
+
         val player = GameSystem.getHuman
         printSystemMessage("내 정보")
         println("보유 숫자 : ${player.getNumber(0)}, ${player.getNumber(1)}")
-
         println("보유 금액 : ${player.getMoney()}억원")
+
         printLine()
     }
 
@@ -56,7 +58,6 @@ object GameUi {
     사용자에게 보여주는 배팅 옵션 목록 출력
     * */
     fun printBattingOption(lastBattingMoney : Int) {
-        printLine()
         printSystemMessage("배팅 옵션")
         for (i in BattingOption.values()) {
             print("${i.ordinal + 1}. ${i.nameKo} ")
@@ -72,6 +73,7 @@ object GameUi {
                 }
             }
         }
+        printLine()
     }
 
     /*

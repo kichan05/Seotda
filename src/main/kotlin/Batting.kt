@@ -1,10 +1,13 @@
 import util.BattingOption.*
 
 class Batting {
-    private var battingMoney: Int = 0
+    private var _battingMoney: Int = 0
+    val battingMoney : Int
+        get() = _battingMoney
+
     private var lastMoney: Int = 1
 
-    fun run() : Int {
+    fun run() {
         val players = GameSystem.getPlayerList.filter { !it.isDeath() }
 
         for (i in players) {
@@ -12,12 +15,14 @@ class Batting {
 
             when (playerBattingMoney) {
                 CALL -> {
-                    GameUi.printBattingMessage(i, CALL, lastMoney, battingMoney + lastMoney)
-                    battingMoney += lastMoney
+                    GameUi.printBattingMessage(i, CALL, lastMoney, _battingMoney + lastMoney)
+                    i.minuseMoney(lastMoney)
+                    _battingMoney += lastMoney
                 }
                 DDADANG -> {
-                    GameUi.printBattingMessage(i, DDADANG, lastMoney * 2, battingMoney + lastMoney * 2)
-                    battingMoney += lastMoney * 2
+                    GameUi.printBattingMessage(i, DDADANG, lastMoney * 2, _battingMoney + lastMoney * 2)
+                    i.minuseMoney(lastMoney * 2)
+                    _battingMoney += lastMoney * 2
                     lastMoney *= 2
                 }
                 DIE -> {
@@ -27,7 +32,5 @@ class Batting {
                 }
             }
         }
-
-        return battingMoney
     }
 }
